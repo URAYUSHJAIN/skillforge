@@ -1,61 +1,14 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "backend/server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "frontend/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
-    },
-    {
-      "src": "admin/package.json",
-      "use": "@vercel/static-build",
-      "config": {
-        "distDir": "dist"
-      }
+  "buildCommand": "npm run vercel-build",
+  "outputDirectory": "frontend/dist",
+  "functions": {
+    "backend/server.js": {
+      "runtime": "@vercel/node@3"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "backend/server.js"
-    },
-    {
-      "src": "/uploads/(.*)",
-      "dest": "backend/server.js"
-    },
-    {
-      "src": "/admin/assets/(.*)",
-      "dest": "admin/dist/assets/$1"
-    },
-    {
-      "src": "/admin/(.*\\.(js|css|ico|png|jpg|svg|woff|woff2))",
-      "dest": "admin/dist/$1"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "admin/dist/index.html"
-    },
-    {
-      "src": "/admin",
-      "dest": "admin/dist/index.html"
-    },
-    {
-      "src": "/assets/(.*)",
-      "dest": "frontend/dist/assets/$1"
-    },
-    {
-      "src": "/(.*\\.(js|css|ico|png|jpg|svg|woff|woff2))",
-      "dest": "frontend/dist/$1"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "frontend/dist/index.html"
-    }
+  },
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/backend/server.js" },
+    { "source": "/uploads/(.*)", "destination": "/backend/server.js" }
   ]
 }

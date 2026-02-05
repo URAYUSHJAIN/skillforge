@@ -9,6 +9,7 @@
     "dev:frontend": "cd frontend && npm run dev",
     "dev:admin": "cd admin && npm run dev",
     "build": "npm run build:frontend && npm run build:admin",
+    "vercel-build": "cd frontend && npm install && npm run build && cd ../admin && npm install && npm run build",
     "build:frontend": "cd frontend && npm run build",
     "build:admin": "cd admin && npm run build",
     "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../admin && npm install",
