@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "frontend/dist",
-  "framework": null,
   "builds": [
     {
       "src": "backend/server.js",
@@ -33,19 +30,23 @@
       "dest": "backend/server.js"
     },
     {
-      "src": "/admin/(.*)",
-      "dest": "admin/dist/$1"
+      "src": "/admin",
+      "dest": "/admin/index.html"
     },
     {
-      "src": "/admin",
-      "dest": "admin/dist/index.html"
+      "src": "/admin/(.*)",
+      "dest": "/admin/$1"
+    },
+    {
+      "handle": "filesystem"
     },
     {
       "src": "/(.*)",
-      "dest": "frontend/dist/$1"
+      "dest": "/frontend/$1"
+    },
+    {
+      "src": "/.*",
+      "dest": "/frontend/index.html"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
